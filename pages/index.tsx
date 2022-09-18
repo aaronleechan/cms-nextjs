@@ -1,37 +1,41 @@
-import Link from 'next/link';
-import { GraphQLClient } from 'graphql-request';
+import { getSession, useSession } from 'next-auth/react';
+import Layout from '../components/layout/Layout';
+import ResturantProfile from '../components/resturant/resturantProfile'
+import { GetServerSideProps } from 'next';
 
-export async function getStaticProps() {
-  const hygraph = new GraphQLClient(`${process.env.GRAPHQL}`);
-
-  const { products } = await hygraph.request(
-    `
-      {
-        products {
-          name
-          price
-          image{
-            id
-          }
-        }
-      }
-    `
-  );
-
-  return {
-    props: {
-      products
-    },
-  };
-}
-
-
-const Home = (props: any ) =>{
+export default function Home(){
   return(
-    <div>
-      <h1>This is Home Page</h1>
-    </div>
+    <Layout>
+      <ResturantProfile/>
+    </Layout>
   )
 }
 
-export default Home;
+export const getServerSideProps: GetServerSideProps = async (context) => {
+
+
+
+  // const queryClient = new QueryClient();
+  const session = await getSession(context);
+  console.log({" This is getServerSideProps session ": session });
+  // await queryClient.prefetchQuery('products', getProducts);
+
+  // if (!session) {
+  //   return {
+  //     redirect: {
+  //       destination: getEnv('NEXTAUTH_CALLBACK_URL'),
+  //       permanent: false,
+  //     },
+  //     props: {
+  //       dehydratedState: dehydrate(queryClient),
+  //     },
+  //   };
+  // }
+
+  return {
+    props: {
+      // session,
+      // dehydratedState: dehydrate(queryClient),
+    },
+  };
+};

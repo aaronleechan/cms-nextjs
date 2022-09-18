@@ -1,7 +1,7 @@
 import { Box, List, ListItem, ListItemText,Grid, Button } from '@material-ui/core';
 import { GraphQLClient } from 'graphql-request';
 import { menuItemsQuery } from '../../../graphqlQuery/resturant_items';
-import { MenuListItem } from '../../../components/resturant_menu';
+import { MenuListItem } from '../../../components/resturant';
 
 export async function getServerSideProps({params}: any) {
   const hygraph = new GraphQLClient(`${process.env.GRAPHQL}`);

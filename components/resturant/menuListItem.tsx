@@ -9,8 +9,7 @@ interface menuItemInterface {
 
 const MenuListItem = (title: string,items: any) => {
 
-
-    function uiRender(){
+    function menuListUiRender(){
         let ui: any = []
         items.map((v: menuItemInterface, index: number) => {
             if(v.mealTime == title){
@@ -35,7 +34,7 @@ const MenuListItem = (title: string,items: any) => {
       <Box>
         <h2>{title}</h2>
         <List>
-            {uiRender()}
+            {menuListUiRender()}
         </List>
       </Box>
     )

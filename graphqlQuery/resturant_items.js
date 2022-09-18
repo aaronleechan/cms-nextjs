@@ -6,12 +6,3 @@ export const menuItemsQuery = `{
         mealTime
     }
 }`
-
-export const menuItemsQueryByMealTime = (mealTime) => {
-    `items(where: {mealTime: ${mealTime}}) {
-        mealTime
-        otherName
-        name
-        regularPrice
-    }`
-}
