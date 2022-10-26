@@ -3,6 +3,10 @@ export const menuItemsQuery = `{
         name
         otherName
         regularPrice
-        mealTime
+        mealTime,
+        id
+        image{
+            url
+        }
     }
 }`

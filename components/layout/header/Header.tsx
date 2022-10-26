@@ -2,8 +2,7 @@ import { useSession } from 'next-auth/react';
 import { AppBar,Box, IconButton, Toolbar, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles';
 import Menu from '@mui/icons-material/Menu';
-import LogOut from '../../auth/logout';
-import LogIn from '../../auth/login';
+import Link from 'next/link'
 
 const useStyles = makeStyles ({
     root:{
@@ -37,9 +36,8 @@ export const Header = () =>{
                             <Menu/> 
                         </IconButton>
                             <Typography variant='h5' component={'div'} color='textSecondary' className={classes.title}>
-                                Resturant
-                            </Typography>
-                            { session ? <LogOut/> : <LogIn/> }   
+                                <Link href="/">Home Page</Link>
+                            </Typography> 
                     </Toolbar>
                 </AppBar>
             </Box>

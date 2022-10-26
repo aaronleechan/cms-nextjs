@@ -1,41 +1,46 @@
-import { getSession, useSession } from 'next-auth/react';
 import Layout from '../components/layout/Layout';
-import ResturantProfile from '../components/resturant/resturantProfile'
-import { GetServerSideProps } from 'next';
+import Box from '@mui/material/Box';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import MenuBook from '@mui/icons-material/MenuBook';
+import { Tooltip } from '@mui/material';
+
+
+const obj = [
+  {url: "/onlineOrder", title: "Sample Online Order",usage: "Technology: React Redux, Hygraph (CMS), GraphQL, ListItem"}
+]
 
 export default function Home(){
   return(
     <Layout>
-      <ResturantProfile/>
+      <Box
+        sx={{
+          width: 500,
+          height: 500,
+          display: 'flex',
+          justifyContent: 'center',
+          pt: '100px'
+        }}
+      >
+
+          <List>
+            {
+              obj.map((v,index)=>(
+                <Tooltip title={v.usage}>
+                  <ListItem>
+                    <ListItemButton component="a" href={v.url}>
+                      <ListItemIcon><MenuBook/></ListItemIcon>
+                      <ListItemText primary="Sample Online Order" />
+                    </ListItemButton>
+                  </ListItem>
+                </Tooltip>
+              ))
+            }
+          </List>
+      </Box>
     </Layout>
   )
 }
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-
-
-
-  // const queryClient = new QueryClient();
-  const session = await getSession(context);
-  console.log({" This is getServerSideProps session ": session });
-  // await queryClient.prefetchQuery('products', getProducts);
-
-  // if (!session) {
-  //   return {
-  //     redirect: {
-  //       destination: getEnv('NEXTAUTH_CALLBACK_URL'),
-  //       permanent: false,
-  //     },
-  //     props: {
-  //       dehydratedState: dehydrate(queryClient),
-  //     },
-  //   };
-  // }
-
-  return {
-    props: {
-      // session,
-      // dehydratedState: dehydrate(queryClient),
-    },
-  };
-};
